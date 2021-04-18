@@ -29,6 +29,7 @@
     ],
     "rules": {
       "prettier/prettier": "error",
+      "no-return-assign": "off",
       "no-use-before-define": "off",
       "react/jsx-one-expressions-per-line": "off",
       "react/jsx-props-no-spreading": "off",
