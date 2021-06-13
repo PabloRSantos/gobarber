@@ -16,7 +16,7 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import logoImg from '../../assets/logo.png';
-import Input, { InputRef } from '../../components/Input';
+import Input from '../../components/Input';
 import { Button } from '../../components/Button';
 
 import {
