@@ -26,6 +26,8 @@
     "rules": {
         "prettier/prettier": "warn",
         "camelcase": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "no-use-before-define": "off",
