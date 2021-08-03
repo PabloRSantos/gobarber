@@ -1,10 +1,10 @@
-import { compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 import { authConfig } from '@config/auth';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { User } from '../infra/typeorm/entities/User';
 import { IUsersRepository } from '../repositories/IUsersRepository';
+import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
+import { ITokenProvider } from '../providers/TokenProvider/models/ITokenProvider';
 
 interface Request {
     email: string;
@@ -21,6 +21,12 @@ class AuthenticateUserService {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
+
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
+
+        @inject('TokenProvider')
+        private tokenProvider: ITokenProvider,
     ) {}
 
     async execute({ email, password }: Request): Promise<Response> {
@@ -30,7 +36,10 @@ class AuthenticateUserService {
             throw new AppError('Incorrect email', 401);
         }
 
-        const passwordMatched = await compare(password, user.password);
+        const passwordMatched = await this.hashProvider.compareHash(
+            password,
+            user.password,
+        );
 
         if (!passwordMatched) {
             throw new AppError('Incorrect password', 401);
@@ -38,7 +47,7 @@ class AuthenticateUserService {
 
         const { secret, expiresIn } = authConfig.jwt;
 
-        const token = sign({}, secret, {
+        const token = this.tokenProvider.generate({}, secret, {
             subject: user.id,
             expiresIn,
         });
