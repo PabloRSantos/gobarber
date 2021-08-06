@@ -1,4 +1,3 @@
-import { AppError } from '@shared/errors/AppError';
 import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
 import { FakeTokenProvider } from '../providers/TokenProvider/fakes/FakeTokenProvider';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
@@ -37,12 +36,4 @@ describe('AuthenticateUser', () => {
         expect(authenticateUser).toHaveProperty('token');
         expect(authenticateUser.user).toEqual(user);
     });
-
-    // it('should not be able to create a new user with same email from another', async () => {
-    //     await authenticateUserService.execute(userData);
-
-    //     const user = authenticateUserService.execute(userData);
-
-    //     await expect(user).rejects.toBeInstanceOf(AppError);
-    // });
 });

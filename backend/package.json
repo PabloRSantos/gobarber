@@ -7,7 +7,7 @@
     "build": "tsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore node_modules src/shared/infra/http/server.ts",
     "start": "ts-node src/shared/infra/http/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest"
   },
   "dependencies": {
@@ -15,8 +15,10 @@
     "date-fns": "^2.20.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
+    "nodemailer": "^6.6.3",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0",
@@ -29,6 +31,7 @@
     "@types/jest": "^26.0.24",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/multer": "^1.4.5",
+    "@types/nodemailer": "^6.4.4",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
