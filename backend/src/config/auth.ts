@@ -1,6 +1,6 @@
 const authConfig = {
     jwt: {
-        secret: 'gobarber',
+        secret: process.env.APP_SECRET,
         expiresIn: '1d',
     },
 };
