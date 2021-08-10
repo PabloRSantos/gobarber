@@ -1,3 +1,4 @@
+import { ICacheProvider } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { User } from '../infra/typeorm/entities/User';
@@ -18,6 +19,9 @@ class CreateUserService {
 
         @inject('HashProvider')
         private hashProvider: IHashProvider,
+
+        @inject('CacheProvider')
+        private cacheProvider: ICacheProvider,
     ) {}
 
     async execute({ name, password, email }: Request): Promise<User> {
@@ -34,6 +38,8 @@ class CreateUserService {
             email,
             password: hashedPassword,
         });
+
+        await this.cacheProvider.invalidatePrefix('providers-list');
 
         return this.usersRepository.save(user);
     }

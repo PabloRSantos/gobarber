@@ -1,3 +1,4 @@
+import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { AppError } from '@shared/errors/AppError';
 import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
@@ -6,6 +7,8 @@ import { CreateUserService } from './CreateUserService';
 let createUserService: CreateUserService;
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
+let fakeCacheProvider: FakeCacheProvider;
+
 const userData = {
     name: 'John Doe',
     password: '1234',
@@ -16,9 +19,12 @@ describe('CreateUser', () => {
     beforeEach(() => {
         fakeUsersRepository = new FakeUsersRepository();
         fakeHashProvider = new FakeHashProvider();
+        fakeCacheProvider = new FakeCacheProvider();
+
         createUserService = new CreateUserService(
             fakeUsersRepository,
             fakeHashProvider,
+            fakeCacheProvider,
         );
     });
 
