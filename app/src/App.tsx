@@ -3,8 +3,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthRoutes } from './routes/auth.routes';
 import { AppProvider } from './hooks';
+import { Routes } from './routes';
 
 const App: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <StatusBar barStyle="light-content" backgroundColor="#312e38" />
       <AppProvider>
         <View style={{ flex: 1, backgroundColor: '#312e38' }}>
-          <AuthRoutes />
+          <Routes />
         </View>
       </AppProvider>
     </NavigationContainer>

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, {
   createContext,
   useCallback,
@@ -12,7 +13,7 @@ interface User {
   id: string;
   email: string;
   name: string;
-  password: string;
+  avatar_url: string;
 }
 
 interface AuthState {
@@ -70,7 +71,7 @@ const AuthProvider: React.FC = ({ children }) => {
       ['@GoBarber:user', JSON.stringify(user)],
     ]);
 
-    api.defaults.headers.authorization = `Bearer ${token[1]}`;
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);

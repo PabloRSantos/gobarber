@@ -29,6 +29,7 @@
     ],
     "rules": {
       "prettier/prettier": "error",
+      "camelcase": "off",
       "no-return-assign": "off",
       "no-use-before-define": "off",
       "react/jsx-one-expressions-per-line": "off",
